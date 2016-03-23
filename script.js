@@ -7,7 +7,11 @@ var Die = function () {
             this.innerHTML = newnum;
         });
         $(this.div).on('dblclick', function(){
+           var negate = $(this).html();
+           console.log(negate);
+           subtract.push(negate);
            $(this).remove();
+           
         });
         this.div.className = 'dice';
         this.roll();
@@ -22,7 +26,13 @@ var Die = function () {
 
 
 var dice = [];
-var sum = []
+var sum = [];
+var subtract = [];
+
+function sub(a,b) {
+    return a - b;
+}
+
 function add(a, b) {
     return a + b;
 }
@@ -41,8 +51,11 @@ function sumDice() {
         var values = dice[i].value;
         sum.push(values);
     }
-    var total = sum.reduce(add, 0);
+    var adding = parseInt(sum.reduce(add,0));
+    // console.log(adding)
+    var subtracting = parseInt(subtract.reduce(add,0));
+    // console.log(subtracting)
+    var total = sub(adding, subtracting)
     alert("The dice total is " + total);
-    dice = []
 }
 
